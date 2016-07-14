@@ -1,0 +1,442 @@
+
+/*fonts*/
+
+@import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,700);
+
+
+/*media queris*/
+
+/*para  pantallas medias y grandes */
+@media screen and (min-width:800px){
+    #tabla{
+        margin-left: 24%;
+        width: 50%;
+    }
+
+    #buscar{
+        padding-left: 7%;
+    }
+
+
+
+
+}
+
+/*pantallas pequeñas */
+
+@media screen and (max-width:800px){
+    #carre1,#carre2{
+        visibility: hidden ;
+    }
+    li{
+        text-align: center;
+    }
+    #centro_pelis{
+
+       padding-top: 70px;
+
+    }
+
+    #col_tops{
+        position: absolute;
+        top: 55%;
+        left: 25%;
+    }
+
+   #regis{
+       position: relative;
+       top: 10px;
+   }
+
+   h2{
+
+       font-weight: bold;
+       position: absolute;
+
+   }
+
+   #ficha_prin{
+
+     
+       width: auto;
+
+
+
+
+   }
+
+}
+
+
+
+/*mis estilos personales*/
+#panel_log{
+    background: linear-gradient(to top,grey,black);
+    color: lightgrey;
+    height: 50px;
+    padding-top: 1%;
+    padding-left: 5%;
+    font-size: smaller;
+
+}
+
+
+input{
+    border: medium black;
+    border-radius: 10px;
+    padding-left: 22px;
+    height: 25px;
+    margin-left: 12px;
+    color: black;
+
+
+}
+
+.log{
+    border: medium black;
+    border-radius: 10px;
+    padding-left: 12px;
+    color: black ;
+    width: 100px;
+    background: linear-gradient(to top,grey,white);
+    height: 25px;
+    margin-left: 12px;
+
+}
+
+.log:checked{
+    border: medium darkblue;
+    border-radius: 10px;
+    padding-left: 12px;
+    width: 100px;
+    background: linear-gradient(to top,grey,white);
+    height: 25px;
+    color: medium darkblue;
+}
+
+#rec{
+    position: absolute;
+    top: 1%;
+    right: 12%;
+}
+
+#recur{
+    display: inline;
+    padding-left:10%;
+}
+
+
+
+#titulo{
+    text-align:center;
+}
+
+#menu_late{
+    height: 12px;
+}
+
+#prin{
+    text-align: center;
+    color: #000000;
+    font-weight:bold ;
+    font-size: 5em;
+    font-family: 'Roboto Slab', serif;
+
+}
+
+#prin:hover{
+    color: #1b6d85;
+    text-decoration: none;
+}
+
+.centering{
+    float:none;
+    margin:0 auto
+}
+
+li {
+    background: linear-gradient(to top, grey, white);
+}
+
+
+
+
+#carrete1{
+    position: absolute;
+    top:25.5%;
+    z-index:1;
+    left:16.5%;
+}
+
+#carrete2{
+    position:absolute;
+    top:25.5%;
+    z-index:1;
+    right:16.5%;
+}
+
+
+#aun{
+    background: linear-gradient(to top,grey,black);
+    height: 50px;
+    padding-top: 1%;
+    text-align: center;
+    }
+
+#regis{
+    color:lightskyblue;
+}
+
+#regis:hover{
+    color:#ffffff;
+    text-decoration: none;
+}
+
+
+#busc{
+    margin-left: 30%;
+}
+
+
+
+
+
+#carre2{
+    margin-left: -75%;
+}
+
+
+
+table{
+    background-color: #f8f8f8;
+    box-shadow: 10px 10px 5px #888888;
+}
+
+button{
+    background-color: #cccccc;
+}
+
+button:hover{
+    color: white;
+}
+
+
+
+#registro{
+    box-shadow: 10px 10px 5px #888888;
+    width: 50%;
+    height: 100%;
+}
+
+
+#youtube{
+    margin-left:20.5%;
+}
+
+#youtube_series{
+    margin-left:23%;
+}
+
+
+
+
+#registro{
+   position: absolute;
+    width: 40%;
+    height: 70%;
+    top: 36%;
+    left: 29%;
+    padding-left: 20px;
+}
+
+form td {
+
+    padding-left: 20px;
+
+}
+
+td input{
+    background-color: #a2a2a2;
+}
+
+
+#centro_pelis{
+    position: absolute;
+    left: 16%;
+    top:42%;
+    width: 70%;
+    height: 70%;
+}
+
+
+#peli_indi{
+    float: left;
+    padding: 5px;
+    border: 1px solid grey;
+}
+
+#peli_indi:hover{
+    background-color: #204d74;
+    color: white;
+}
+
+#titulos{
+    position: relative;
+    text-align: center;
+    padding: 10px;
+}
+
+
+#menu_princi{
+    padding-top:-100px ;
+}
+
+#fotos_logo{
+    width: 100%;
+    height: 10%;
+}
+
+li{
+    color: #080808;
+}
+
+#titulo_carte{
+    font-family: 'Roboto Slab', serif;
+    color: #000000;
+    font-size: 1.2em;
+    font-weight: bold;
+    position: absolute;
+    left: 16%;
+}
+
+#title{
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+    font-weight: bold;
+    font-size:1.6em ;
+    background-color: #204d74;
+    color: #ffffff;
+
+}
+
+
+.ficha_grande{
+    position:absolute;
+    width: 700px;
+    height: 100%;
+    left: 24%;
+    top: 45%;
+}
+
+#criticas{
+    
+    position: absolute;
+    top: 85%;
+    left: 4.6%;
+    background-color: #0f0f0f;
+    padding: 5px;
+    border-radius: 12px;
+}
+
+#criticas:hover{
+
+    color: #953a39;
+    text-decoration: none;
+    padding: 7px;
+}
+
+#criticas_series{
+
+    position: absolute;
+    top: 78%;
+    left: 10.9%;
+    background-color: #0f0f0f;
+    padding: 5px;
+    border-radius: 12px;
+}
+
+#criticas_series:hover{
+
+    color: #953a39;
+    text-decoration: none;
+    padding: 7px;
+}
+
+
+#butt_form{
+
+    background-color: #0f0f0f;
+    padding: 5px;
+    border-radius: 12px;
+    color: white;
+
+
+}
+
+#butt_form:hover{
+
+    color: #953a39;
+    text-decoration: none;
+    padding: 7px;
+
+}
+
+
+
+#bienvenido{
+
+    position: absolute;
+    width: 60%;
+    height: 50%;
+    background-color: rgba(204, 204, 204, 0.42);
+    left: 20%;
+    top: 35%;
+    border-radius: 25px;
+    border: groove #a2a2a2 3px;
+    text-align: center;
+    padding-top: 0.7%;
+}
+
+
+
+#col_top{
+    position: absolute;
+    width: 30%;
+    height: 100%;
+    background-color: rgba(163, 163, 163, 0.67);
+    top: 45%;
+    left: 35%;
+}
+
+
+#titu_tops{
+    text-align: center;
+    font-size:1.5em;
+    font-weight: bold;
+}
+
+
+#votar{
+
+    color: #1b6d85;
+    position: relative;
+    top: 90%;
+    left: 1.6%;
+    background-color: #0f0f0f;
+    padding: 5px;
+    border-radius: 12px;
+
+
+}
+
+
+
+#votar:hover{
+
+    color: #953a39;
+    text-decoration: none;
+    padding: 7px;
+
+
+
+}
