@@ -17,6 +17,20 @@ session_start();
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/estilos.css"/>
+    <style>
+        video {
+            background-size: cover;
+            bottom: 0;
+            height: auto;
+            min-height: 100%;
+            min-width: 100%;
+            position: fixed;
+            right: 0;
+            width: auto;
+            z-index: 10;
+        }
+
+    </style>
 </head>
 <body>
 <!--Añado la libreria jquery-->
@@ -82,8 +96,8 @@ else{
 
 <!-- fotos -->
 
-<img src="img/generales/cine1.jpg" id="carre1"  style="position: absolute; top: 10%;left: 20%;" alt=""/>
-<img src="img/generales/cine2.jpg" id="carre2" style="position: absolute; top: 10%;right: 20%;" alt=""/>
+<img src="img/generales/cine1.jpg"  style="position: absolute; top: 6%;left: 20%;" alt=""/>
+<img src="img/generales/cine2.jpg"  style="position: absolute; top: 6%;right: 20%;" alt=""/>
 
 <!--titulo-->
 
@@ -92,6 +106,9 @@ else{
         <a href="index.php" id="prin">CineFans</a>
     </div>
 </div>
+
+
+
 
 
 
@@ -147,7 +164,7 @@ $v1=$_GET['variable1'];
 $con=mysql_connect('localhost','sergiopj','Ribera12actual!');
 
 //selecciono base de datos
-mysql_select_db("cinefans", $con);
+mysql_select_db("cinefan", $con);
 
 
 //codificar texto en utf8 importante si no se verian caracteres raros interpretados por el navegador
@@ -172,7 +189,7 @@ if($con) {
     while ($fila) {
         echo "<div class='ficha_grande'><table id='ficha_prin' class='table col-xs-12 col-sm-12 col-md-6 col-lg-6' >";
         echo "<tr><th colspan='2' id='title'>" . $fila['titulo'] . "</th></tr>";
-        echo "<tr><td rowspan='9'><img style='border:2px solid #000000 ;' id='foto_grande' onclick='javascript:this.width=400;this.height=592' ondblclick='javascript:this.width=165;this.height=242' src='img/obras/grandes/" . $fila['foto'] . ".jpg' width='165' height='242' alt=''/><h4 style='position:relative; left:34%;top:10%;'>Tráiler</h4><a href='" . $fila['trailer'] . "' style='position:relative; left:15%;top:15%;' target='_blank'> <img src='img/redes_sociales/you_tube.png' alt='' style='position'  id='youtube'/></a><a href='criticas.php?variable3=$id' id='criticas'>Críticas Usuarios</a></td></tr>";
+        echo "<tr><td rowspan='9'><img style='border:2px solid #000000 ;' id='foto_grande' onclick='javascript:this.width=400;this.height=592' ondblclick='javascript:this.width=165;this.height=242' src='img/obras/" . $fila['foto'] . ".jpg' width='165' height='242' alt=''/><h4 style='position:relative; left:34%;top:10%;'>Tráiler</h4><a href='" . $fila['trailer'] . "' style='position:relative; left:15%;top:15%;' target='_blank'> <img src='img/redes_sociales/you_tube.png' alt='' style='position'  id='youtube'/></a><a href='criticas.php?variable3=$id' id='criticas'>Críticas Usuarios</a></td></tr>";
         echo "<tr><td><strong>Título Original:&nbsp;&nbsp;&nbsp;&nbsp;</strong>" . $fila['titulo_ori'] . "</td></tr>";
         echo "<tr><td><strong>Duración:&nbsp;&nbsp;&nbsp;&nbsp;</strong>" . $fila['duracion'] . "  minutos</td></tr>";
         echo "<tr><td><strong>Año:&nbsp;&nbsp;&nbsp;&nbsp;</strong>" . $fila['año'] . "</td></tr>";

@@ -79,10 +79,12 @@ else{
 
 ?>
 
+
+
 <!-- fotos -->
 
-<img src="img/generales/cine1.jpg" id="carre1"  style="position: absolute; top: 10%;left: 20%;" alt=""/>
-<img src="img/generales/cine2.jpg" id="carre2" style="position: absolute; top: 10%;right: 20%;" alt=""/>
+<img src="img/generales/cine1.jpg"  style="position: absolute; top: 6%;left: 20%;" alt=""/>
+<img src="img/generales/cine2.jpg"  style="position: absolute; top: 6%;right: 20%;" alt=""/>
 
 <!--titulo-->
 
@@ -150,7 +152,7 @@ else{
 
         <tr><td>
 
-        <label for="pass" title="gilipollas">Password:</label>
+        <label for="pass" title="">Password:</label>
         <input type="password"  name="pass" id="pass" maxlength="15" style="position: relative;left: 37%;"/>
 
         </td></tr>
@@ -166,7 +168,7 @@ else{
 
         <tr><td colspan="2" style="padding-left:30%; ">
 
-        <button id="butt_form" title="gilipollas">Registrarme</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="reset" id="butt_form">Borrar Datos</button>
+        <button id="butt_form" title="">Registrarme</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button type="reset" id="butt_form">Borrar Datos</button>
 
         </td></tr>
 

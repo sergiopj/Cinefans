@@ -60,7 +60,7 @@ else{
         <div id="panel_log" class="col-md-10 col-xs-12">
             <form action="login.php" name="login">
                 <label for="login">Login:</label>&nbsp;<input  type="text"  name="login" id="login" placeholder="Nombre Usuario"/>
-                <input type="text" name="pass"  placeholder="Password"/>
+                <input type="password" name="pass"  placeholder="Password"/>
                 <button class="log">Iniciar</button>
             </form>
         </div>
@@ -88,8 +88,8 @@ else{
 
     <!-- fotos -->
 
-    <img src="img/generales/cine1.jpg" id="carre1" style="position: absolute; top: 10%;left: 20%;" alt=""/>
-    <img src="img/generales/cine2.jpg" id="carre2" style="position: absolute; top: 10%;right: 20%;" alt=""/>
+    <img src="img/generales/cine1.jpg"  style="position: absolute; top: 6%;left: 20%;" alt=""/>
+    <img src="img/generales/cine2.jpg"  style="position: absolute; top: 6%;right: 20%;" alt=""/>
 
     <!--titulo-->
 
@@ -122,7 +122,7 @@ else{
         </div>
 
         <!-- menu de navegacion adaptado a todo tipo de pantallas -->
-        <div  class="collapse navbar-collapse navbar-ex1-collapse span8 centering" id="menu">
+        <div id="menu" class="col-lg-10">
             <ul class="nav navbar-nav">
                 <li><a href="peliculas.php" class="enlaces">PELÍCULAS </a></li>
                 <li><a href="series.php" class="enlaces">SERIES TV</a></li>
@@ -137,7 +137,7 @@ else{
     </div>
 
 
-    <h2 class="container-fluid" id="titulo_carte"><em>Cartelera</em></h2>
+    <h2 class="container-fluid" id="titu_tops"><em>Cartelera</em></h2>
 
 
     <!-- tabla para mostar las peliculas en cartelera -->
@@ -147,7 +147,7 @@ else{
 
     <?php
     //conectarse como usuario de la bd
-    $con=mysql_connect('localhost','sergiopj','Ribera12actual!');
+    $con=mysql_connect('mysql1.000webhost.com','a4376548_sergio','pituspitus');
 
     //codificar texto en utf8 importante si no se verian caracteres raros interpretados por el navegador
     mysql_query("SET NAMES 'utf8'");
@@ -156,7 +156,7 @@ else{
 
         if($con){
         //selecciono base de datos
-        mysql_select_db("cinefans", $con);
+        mysql_select_db("a4376548_cinefan", $con);
         //consulta donde nos interesa sacar los estrenos
         $sql = mysql_query("select titulo,tipo,foto,id_obra from obras WHERE tipo='estreno' order by titulo");
 

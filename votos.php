@@ -30,7 +30,7 @@ session_start();
 
 
         //conectarse como usuario de la bd
-        $con=mysql_connect('localhost','sergiopj','Ribera12actual!');
+        $con=mysql_connect('mysql1.000webhost.com','a4376548_sergio','pituspitus');
 
         //codificar texto en utf8 importante si no se verian caracteres raros interpretados por el navegador
         mysql_query("SET NAMES 'utf8'");
@@ -40,7 +40,7 @@ session_start();
         if($con){
 
             //selecciono base de datos
-            mysql_select_db("cinefans", $con);
+            mysql_select_db("a4376548_cinefan", $con);
 
             $sql = mysql_query("insert into puntuaciones(valor,fecha,id_obra,id_user) values($valor,null,$id_obra,$user)");
 

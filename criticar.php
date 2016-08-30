@@ -82,9 +82,8 @@ else{
 
 <!-- fotos -->
 
-<img src="img/generales/cine1.jpg" id="carre1"  style="position: absolute; top: 10%;left: 20%;" alt=""/>
-<img src="img/generales/cine2.jpg" id="carre2" style="position: absolute; top: 10%;right: 20%;" alt=""/>
-
+<img src="img/generales/cine1.jpg"  style="position: absolute; top: 6%;left: 20%;" alt=""/>
+<img src="img/generales/cine2.jpg"  style="position: absolute; top: 6%;right: 20%;" alt=""/>
 <!--titulo-->
 
 <div class="row">
@@ -147,7 +146,7 @@ $_SESSION['id_obra'] =  $_GET['idpeli'];
     ?>
 
 
-    <div class="form-group" style="position: absolute;top: 40%;left: 18%">
+    <div class="form-group" style="position: absolute;top: 30%;left: 28%">
 
 
 

@@ -21,7 +21,10 @@ if(isset($_SESSION['usuario'])&& isset($_SESSION['id_obra']) && isset($_GET['aut
    //conectamos a la bd e insertamos la critica
 
     //conectarse como usuario de la bd
-    $con=mysql_connect('localhost','sergiopj','Ribera12actual!');
+    $con=mysql_connect('mysql1.000webhost.com','a4376548_sergio','pituspitus');
+
+    //selecciono base de datos
+    mysql_select_db("cinefan", $con);
 
     //codificar texto en utf8 importante si no se verian caracteres raros interpretados por el navegador
     mysql_query("SET NAMES 'utf8'");
@@ -36,7 +39,7 @@ if(isset($_SESSION['usuario'])&& isset($_SESSION['id_obra']) && isset($_GET['aut
     if($con){
 
         //selecciono base de datos
-        mysql_select_db("cinefans", $con);
+        mysql_select_db("a4376548_cinefans", $con);
         //consulta donde nos interesa sacar los estrenos
         $sql = mysql_query("insert into criticas(texto,autor,fecha,id_obra,id_user) values('$critica','$autor',null,$obra,$usuario)");
 

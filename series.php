@@ -81,8 +81,8 @@ else{
 
 <!-- fotos -->
 
-<img src="img/generales/cine1.jpg" id="carre1" style="position: absolute; top: 10%;left: 20%;" alt=""/>
-<img src="img/generales/cine2.jpg" id="carre2" style="position: absolute; top: 10%;right: 20%;" alt=""/>
+<img src="img/generales/cine1.jpg"  style="position: absolute; top: 6%;left: 20%;" alt=""/>
+<img src="img/generales/cine2.jpg"  style="position: absolute; top: 6%;right: 20%;" alt=""/>
 
 <!--titulo-->
 
@@ -129,7 +129,7 @@ else{
 
 </div>
 
-<h2 class="container-fluid" id="titulo_carte"><em>Series Tv</em></h2>
+<h2 class="container-fluid" id="titu_tops"><em>Series Tv</em></h2>
 
 
 
@@ -140,7 +140,7 @@ else{
 
 <?php
 //conectarse como usuario de la bd
-$con=mysql_connect('localhost','sergiopj','Ribera12actual!');
+$con=mysql_connect('mysql1.000webhost.com','a4376548_sergio','pituspitus');
 
 //codificar texto en utf8 importante si no se verian caracteres raros interpretados por el navegador
 mysql_query("SET NAMES 'utf8'");
@@ -149,7 +149,7 @@ mysql_query("SET NAMES 'utf8'");
 
 if($con){
 //selecciono base de datos
-mysql_select_db("cinefans", $con);
+mysql_select_db("a4376548_cinefan", $con);
 //consulta donde nos interesa sacar los estrenos
 $sql = mysql_query("select titulo,tipo,foto,id_obra from obras WHERE tipo='serie' order by titulo");
 
