@@ -1,23 +1,18 @@
 
 <?php
-//iniciamos session
 session_start();
 ?>
-
-
-
-
-
 <!doctype html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
-    <!--Añado la etiqueta meta-viewport imprecindible para trabajar con bootstrap-->
+    <title>Ficha Individual</title>
+    <!--I add the label put - viewport imprecindible to work with bootstrap-->
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/estilos.css"/>
     <style>
+    
         video {
             background-size: cover;
             bottom: 0;
@@ -33,19 +28,15 @@ session_start();
     </style>
 </head>
 <body>
-<!--Añado la libreria jquery-->
+    
+<!--I Add the jquery library-->
 <script src="js/jquery.js.js"></script>
-<!--Acceso al archivo bootstrap con el js-->
+<!--I Access to the file bootstrap with the js-->
 <script src="js/bootstrap.min.js"></script>
-
-
-<!--Codigo real de esta pagina-->
-
 
 <?php
 
-//si hay session
-
+//If it is session
 if(isset($_SESSION['usuario'])){
 
     $user=$_SESSION['usuario'];
@@ -56,20 +47,12 @@ if(isset($_SESSION['usuario'])){
      <a href='cerrar_session.php' style='color: #9afff2'>Cerrar sesión</a>
     </div>";
 
-
-
-
-
 }
 
-//si no la hay
-
+//If it is not session
 else{
-
     ?>
-
-
-    <!--capa de logeo-->
+    <!--login-->
     <div class="row">
         <div id="panel_log" class="col-md-10 col-xs-12">
             <form action="login.php" name="login">
@@ -79,7 +62,7 @@ else{
             </form>
         </div>
 
-        <!--registro-->
+        <!--new user-->
 
         <div class="col-md-2 col-xs-12" id="aun">
             <a href="registro.php" id="regis">¿Aún no te has registrado?</a>
@@ -94,12 +77,12 @@ else{
 ?>
 
 
-<!-- fotos -->
+<!-- photos -->
 
 <img src="img/generales/cine1.jpg"  style="position: absolute; top: 6%;left: 20%;" alt=""/>
 <img src="img/generales/cine2.jpg"  style="position: absolute; top: 6%;right: 20%;" alt=""/>
 
-<!--titulo-->
+<!--title-->
 
 <div class="row">
     <div  id="titulo" class="col-xs-12 col-md-12" style="z-index: 9">
@@ -107,20 +90,11 @@ else{
     </div>
 </div>
 
-
-
-
-
-
-
-
 <div class="row">
-
-
+    
     <nav class="navbar navbar-default container col-xs-12 col-sm-12 col-md-8 col-lg-8 span8 centering" role="navigation" style="z-index: 10">
-        <!-- El logotipo y el icono que despliega el menú se agrupan
-            para mostrarlos mejor en los dispositivos móviles -->
-        <!-- con el class centering puedo centrar en la web el menu horizontal -->
+       <!-- The logo and the icon that drop-down of the menu they group to show them better in the mobile devices -->
+       <!-- With the class centering I can centre on the web the horizontal menu -->
         <div class="navbar-header ">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only"></span>
@@ -131,7 +105,7 @@ else{
             <a class="navbar-brand" href="index.php" id="men"><strong>Inicio</strong></a>
         </div>
 
-        <!-- menu de navegacion adaptado a todo tipo de pantallas -->
+        <!-- Menu of navigation adapted to all kinds of screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse span8 centering" id="menu">
             <ul class="nav navbar-nav">
                 <li><a href="peliculas.php" class="enlaces">PELÍCULAS </a></li>
@@ -146,40 +120,26 @@ else{
 
 </div>
 
-
-
-
-
-
-
-
-
-
 <?php
 
-//recogo variable de la pagina index
+//I get variable1 from the page index
 $v1=$_GET['variable1'];
 
-//conectarse como usuario de la bd
-$con=mysql_connect('localhost','sergiopj','Ribera12actual!');
+//To connect as user of the database
+$con=mysql_connect('xxxx','xxxx','xxxx');
 
-//selecciono base de datos
-mysql_select_db("cinefan", $con);
+//I select the database
+mysql_select_db("xxxx", $con);
 
-
-//codificar texto en utf8 importante si no se verian caracteres raros interpretados por el navegador
+//Text codifies in utf8 importantly if characters not interpreted by the web navigator 
 mysql_query("SET NAMES 'utf8'");
 
-
-
-
 if($con) {
-    //consulta donde nos interesa sacar todos los datos del titulo de pelicula recibido y nombres de directores
+    //It query where we are interested in extracting all the information of the title of movie received and directors' names
     $sql = mysql_query("SELECT * FROM obras O INNER JOIN directores D USING(id_director)
     WHERE O.id_obra=$v1;");
 
-
-    //funcion para devolver array con datos de una fila de la tabla
+    //Function to return array with information of a row of the table
     $fila = mysql_fetch_assoc($sql);
 
     $titulo = $fila['titulo'];
@@ -198,46 +158,35 @@ if($con) {
         echo "<tr><td><strong>Género:&nbsp;&nbsp;&nbsp;&nbsp;</strong>" . $fila['genero'] . "</td></tr>";
         echo "<tr><td><strong><p>Sinopsis:&nbsp;&nbsp;&nbsp;&nbsp;</strong>" . $fila['sinopsis'] . "</p></td></tr>";
         echo "<tr><td><strong><p>Reparto:&nbsp;&nbsp;&nbsp;&nbsp;</strong>" . $fila['reparto'] . "</p></td></tr>";
-        //rompo el bucle para que recorra la tabla entera
+        //i break while
         $fila = mysql_fetch_assoc($sql);
-
-
-
     }
 
 
-    //si hay session se puede votar y criticar
+    //If it exists session it is possible to vote and criticize
     if (isset($_SESSION['usuario'])) {
-
-
         $uno=1;
         $dos=2;
         $tres=3;
         $cuatro=4;
         $cinco=5;
-
-
+        
        echo "<tr><td colspan='2' style='background-color: #204d74;'>
 
-        <!--retoco el css pues la tabla cambia al haber sesion-->
+        <!--I edit the css since the table changes -->
 
         <style>
-
+        
             #criticas{
-
             position: absolute;
-
             top: 80%;
-
-
-
             }
 
 
         </style>
 
 
-        <!--enlaces donde mando el valor del voto-->
+        <!--links where I send the value of the vote-->
 
         <strong style='color: #ffffff;'>Vota $titulo</strong>&nbsp;&nbsp;&nbsp;
 
@@ -249,61 +198,14 @@ if($con) {
         <a href='criticar.php?idpeli=$id' style='padding-left: 20%;color: white'>Escribir critica de $titulo</a>
         </td></tr>";
 
-
     }
 
 }
 
 
-
-
             ?>
 
-
-
-
-
-
-
-
-
-
 </table></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </body>
 </html>
