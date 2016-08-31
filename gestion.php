@@ -1,32 +1,28 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/estilos.css"/>
-    <title>Document</title>
+    <title>Gestion</title>
     <style>
+    
         #obra{
             position: relative;
             width: 35%;
             height: 100%;
             left: 32%;
-        }
+            }
 
         body {
-
                 background-color:#212429;
-
         }
 
         legend{
-
-
                 background-color: #1b6d85;
                 color:white;
                 text-align: center;
-
         }
 
     </style>
@@ -35,11 +31,11 @@
 
 <?php
 
-//preparo la variable con lo recogido en la lista del formulario
+//I prepare the variable with gathered in the list of the form
 $menu=$_GET['menu'];
 
 
-//si lo recogido es user
+//If the quiet thing is obras
 
     if($menu == 'obras'){
 
@@ -316,24 +312,14 @@ $menu=$_GET['menu'];
         </form>
 
 
-
-
-
-
-
         <?php
 
 }
 
-
+//If the quiet thing is director
 elseif ($menu == 'director') {
 
-
         ?>
-
-
-<!-- si se selecciono en la lista el campo director se muestra entonces el formulario de alta de directores-->
-
 
         <h2 style="text-align: center;color: white" class="modal-title">Formulario Alta de Nuevo Director</h2><br><br><br>
 
@@ -353,20 +339,14 @@ elseif ($menu == 'director') {
                 </div>
         </form>
 
-
-
-
-
-
-
 <?php
 
 }
 
+
+//i make new functions...
+
 else
-
-
-
 
 
 ?>
