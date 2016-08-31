@@ -30,8 +30,7 @@
         echo "Error: " . $_FILES['archivo']['error'] . "<br>";
         
     }
-    else
-    {
+    else{
 
         //move the received file to server
 
@@ -43,7 +42,7 @@
                         alert('Archivo Subido');
                         location.href = 'test_subida.php';
                         </script>";
-}
+    }
  ?>
 
 <br><br><br>
