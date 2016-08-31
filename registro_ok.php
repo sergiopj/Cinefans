@@ -1,92 +1,85 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
-    <!--Añado la etiqueta meta-viewport imprecindible para trabajar con bootstrap-->
+    <title>Registro Satisfactorio</title>
+    <!--I add the label put - viewport imprecindible to work with bootstrap-->
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/estilos.css"/>
 </head>
 <body>
-<!--Añado la libreria jquery-->
+    
+<!--I Add the jquery library-->
 <script src="js/jquery.js.js"></script>
-<!--Acceso al archivo bootstrap con el js-->
+<!--I Access to the file bootstrap with the js-->
 <script src="js/bootstrap.min.js"></script>
 
 
-<!--Codigo real de esta pagina-->
+
 <?php
-//primero comprobamos que nos llega todo
+//I verify that it comes login, password and re-password
 if(isset($_GET['login']) && isset($_GET['pass']) && isset($_GET['re_pass'])){
 
-    //si hay campos vacios lo mandamos al formulario
+    //If empty fields come I order it to the form again
     if($_GET['login']=="" || $_GET['pass']=="" || $_GET['re_pass']==""){
-
         echo"<script languaje='javascript'>
                     alert('Faltan Campos Por rellenar');
                     location.href = 'registro.php';
                     </script>";
-
     }
 
 
-
-
-
-    //si no hay campos vacios
+    //if no exist empty fields
     else{
 
         $pass=$_GET['pass'];
-        //si se cumplen estas condiciones , tambien metemos expresiones regulares para password
+        //If the password and the re-password exists and in addition the regular expression is fulfilled, the password is strong
             if(($_GET['pass']==$_GET['re_pass']) && preg_match('/^([A-Z]{1})+([a-z])+([0-9]{1}).{10,20}$/',$pass)){
 
+                    //To connect as user of the database
+                    $con=mysql_connect('xxxxwebhost.com','xxxx','xxxx');
 
-                    //conectarse como usuario de la bd
-                    $con=mysql_connect('mysql1.000webhost.com','a4376548_sergio','pituspitus');
-
-                    //codificar texto en utf8 importante si no se verian caracteres raros interpretados por el navegador
+                    //Text codifies in utf8 importantly if characters not interpreted by the web navigator 
                     mysql_query("SET NAMES 'utf8'");
-                    //selecciono base de datos
+                    
+                    //select the database
                     mysql_select_db("a4376548_cinefan", $con);
-                    //preparo las variables y asi trabajo más comodo
+                    
+                    //i make the variables
                     $login=$_GET['login'];
                     $pass=$_GET['pass'];
                     $re_pass=$_GET['re_pass'];
 
 
-
-
-
-                //necesitamos otra consulta a la bd para ver si el login del nuevo usuario registrado ya existe en nuestra bd
+                //I need another query to the database to see if the login of the new user registered already exists in our database
                     $sql=mysql_query("select login from usuarios");
-
 
 
                     $fila=mysql_fetch_assoc($sql);
 
-                    //bucle para recorrer la tabla
+                    //I cross the table with while
 
                     while($fila){
 
-                        // con este codigo evito usuarios con login igual que ya se encuentran en mi bd
+                        //With this code, I avoid users with login like already they are in my database 
 
                         if($fila['login']==$login){
                             echo"<script languaje='javascript'>
                             alert('El Nombre de Usuario ya existe');
                             location.href = 'registro.php';
                             </script>";
-
-
                         }
-                        //si el login no es igual entonces el usuario se registra con esta consulta en nuestra bd
+                        
+                        //If the login is not like anyone of that already we have, the user registers with this consultation in our database
                         else{
-                            //consulta donde metemos el usuario y sus datos en la tabla usuarios de mi bd cifro con sha necesita 40 caracteres en la bd
-                            //el problema es que esta consulta funciona , solo si se completan todos los campos en el formulario
+                            /*It consults where we put the user and his information in the table users of my bd I code with sha he needs 40 characters in
+                            the bd the problem is that this consultation works, only if all the fields are completed in the form*/
+                            
                             $sql2 = mysql_query("INSERT INTO usuarios(id_user,login,password,admin)
                             VALUES (NULL, '$login',SHA('$pass'),'no')");
 
-                            echo"<!--capa de logeo-->
+                            echo"<!--login-->
 
     <div class='row'>
             <div id='panel_log' class='col-md-10 col-xs-12'>
@@ -97,7 +90,7 @@ if(isset($_GET['login']) && isset($_GET['pass']) && isset($_GET['re_pass'])){
                     </form>
             </div>
 
-        <!--registro-->
+        <!--new user-->
 
             <div class='col-md-2 col-xs-12' id='aun'>
                 <a href='registro.php' id='regis'>¿Aún no te has registrado?</a>
@@ -106,12 +99,12 @@ if(isset($_GET['login']) && isset($_GET['pass']) && isset($_GET['re_pass'])){
     </div>
 
 
-    <!-- fotos -->
+    <!-- photos -->
 
     <img src='img/generales/cine1.jpg' id='carre1' style='position: absolute; top: 10%;left: 20%;' alt=''/>
     <img src='img/generales/cine2.jpg' id='carre2' style='position: absolute; top: 10%;right: 20%;' alt=''/>
 
-    <!--titulo-->
+    <!--title-->
 
     <div class='row'>
 
@@ -121,16 +114,11 @@ if(isset($_GET['login']) && isset($_GET['pass']) && isset($_GET['re_pass'])){
     </div>
 
 
-
-
-
     <div class='row'>
 
-
         <nav class='navbar navbar-default container col-xs-12 col-sm-12 col-md-8 col-lg-8 span8 centering' role='navigation' style='z-index: 10'>
-            <!-- El logotipo y el icono que despliega el menú se agrupan
-                para mostrarlos mejor en los dispositivos móviles -->
-            <!-- con el class centering puedo centrar en la web el menu horizontal -->
+            <!-- The logo and the icon that drop-down of the menu they group to show them better in the mobile devices -->
+            <!-- With the class centering I can centre on the web the horizontal menu -->
          <div class='navbar-header'>
                 <button type='button' class='navbar-toggle' data-toggle='collapse' data-target=''.navbar-ex1-collapse'>
                 <span class='sr-only'></span>
@@ -141,7 +129,7 @@ if(isset($_GET['login']) && isset($_GET['pass']) && isset($_GET['re_pass'])){
                 <a class='navbar-brand' style='background-color: #000000;color:white;' href='index.php' id='men'><strong>Inicio</strong></a>
         </div>
 
-        <!-- menu de navegacion adaptado a todo tipo de pantallas -->
+        <!-- Menu of navigation adapted to all kinds of screens -->
         <div  class='collapse navbar-collapse navbar-ex1-collapse span8 centering' id='menu'>
             <ul class='nav navbar-nav'>
                 <li><a href='peliculas.php' class='enlaces'>PELÍCULAS </a></li>
@@ -172,21 +160,11 @@ if(isset($_GET['login']) && isset($_GET['pass']) && isset($_GET['re_pass'])){
                             alert('La contraseña no cumple los requisitos');
                             location.href = 'registro.php';
                             </script>";
-
-
         }
     }
-
-
 }
 
-
-
-
 ?>
-
-
-
 
 </body>
 </html>
