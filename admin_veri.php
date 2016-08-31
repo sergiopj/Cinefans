@@ -1,10 +1,10 @@
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
-    <!--Añado la etiqueta meta-viewport imprecindible para trabajar con bootstrap-->
+    <title>Admin Verifiacion</title>
+    <!--I add the label put - viewport imprecindible to work with bootstrap-->
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/estilos.css"/>
@@ -15,10 +15,8 @@
         }
 
         h4{
-
             color:#f9f9f9;
             text-align: center;
-
         }
 
         #gestion{
@@ -37,11 +35,9 @@
         }
 
         select{
-
             position: relative;
             left: 38%;
             top: 20%;
-
         }
 
         th{
@@ -58,16 +54,16 @@
 <?php
 
 
-    //comprobamos que nos llega el usuario y pass del formulario
+    //We verify that the user comes to us and password from the form
 
     if(isset($_GET['usuario']) && isset($_GET['password'])) {
 
-    //comprobamos que no nos llegan campos vacios del formulario
+    //We verify that empty fields from the form 
 
 
         if($_GET['usuario']=="" || $_GET['password']==""){
 
-            //si hay algun campo vacio lo mandamos al formulario de nuevo y se le avisa con codigo javascript
+            //If there is algun empty field we order it to the form again and the user is warned him by code javascript
             echo"<script languaje='javascript'>
                     alert('Faltan Campos Por rellenar');
                     location.href = 'admin.html';
@@ -75,67 +71,58 @@
 
         }
 
-        //si recibimos algo tenemos que conectar a la bd y comprobar si lo recibido se encuentra en la tabla de usuarios
+        //If we receive something we have to connect to the database and verify if the received is in the users' table
 
         else {
 
-            //conectarse como usuario de la bd
+            //To connect as user of the database
             $con=mysql_connect('xxxxxwebhost.com','xxxx','xxxx');
 
-            //codificar texto en utf8 importante si no se verian caracteres raros interpretados por el navegador
+            //Text codifies in utf8 importantly if characters not interpreted by the mariner would not appear 
             mysql_query("SET NAMES 'utf8'");
 
-            //si finalmente se puede conectar a la bd
+            //If finally it is possible to connect to the database
 
             if($con) {
 
-                //selecciono base de datos
+                //I select database
                 mysql_select_db("xxxxx", $con);
 
-                //si conectamos, preparamos la consulta a la tabla de usuarios, solo el usuario con campo admin=si accederá
+                //If we connect, we prepare the consultation to the users' table, only the user with field admin=yes will accede
                 $sql=mysql_query("select login,admin,password from usuarios where admin=\"si\";");
 
 
 
-                //preparamos las variables para trabajar mas comodo
+                //We prepare the variables to work mas comfortably
                 $usuario=$_GET['usuario'];
                 $password=$_GET['password'];
-                //como en la bd el campo password está cifrado en sha1 ciframos lo recogido del form para compararlo
+                
+                //Since in the database the field password is coded in sha1 we code gathered from the form to compare it
                 $sha1=sha1($password);
 
 
-                //si existe el usuario recogido, se accede al panel de administracion de cinefans
+                //If the quiet user exists, one accedes to the panel of administration of cinefans
                 $fila=mysql_fetch_assoc($sql);
 
-                //creamos bucle para recorrer la tabla y buscar el usuario recibido del formulario
+                //We use while bucle to cross the table and to search the user received of the form
                 while($fila){
 
                     if($fila['login']==$usuario && $fila['password']==$sha1 ){
 
                         echo "<h4>Bienvenido $usuario</h4>";
 
-                        //Creamos sesión
+                        //Let's start a session
                         session_start();
-                        //Almacenamos el nombre de usuario y su id en una variable de sesión usuario
+                        
+                        //We store the user's name and his go in a variable of session user
                         $_SESSION['usuario'] = $usuario;
                         $_SESSION['password'] = $fila['password'];
 
-                        
-
-
-
-                        //rompo el bucle con un centinela puesto que ya di con el usuario
+                        //I break the while with a sentry since already I met the user
                         $fila = mysql_fetch_assoc($sql);
 
 
-
-
-
-                        //muestro el panel de gestion de cinefans
-
-
-?>
-
+                        //I show the panel of management of cinefans
                         <br><br><br><br>
                         <form action="gestion.php">
                             <div id="gestion">
@@ -151,18 +138,11 @@
                                 </table>
                             </div>
                         </form>
-
-
-
-
 <?php
-
-
-
 
                     }
 
-                    //si el usuario no existe o no es administrador, lo aviso y lo mando al formulario de nuevo
+                    //If the user does not exist or is an administrator, I warn it and order it to the form again
 
                     else{
 
@@ -171,31 +151,18 @@
                         location.href = 'admin.html';
                         </script>";
 
-
-
                     }
 
                 }
 
-
-
-
             }
-
-            //si no se pudo conectar a la bd creamos mensaje en el array de ERRORES
 
         }
 
 
-
-
     }
 
-
-
 ?>
-
-
 
 </body>
 </html>
