@@ -80,7 +80,7 @@
         else {
 
             //conectarse como usuario de la bd
-            $con=mysql_connect('mysql1.000webhost.com','a4376548_sergio','pituspitus');
+            $con=mysql_connect('xxxxxwebhost.com','xxxx','xxxx');
 
             //codificar texto en utf8 importante si no se verian caracteres raros interpretados por el navegador
             mysql_query("SET NAMES 'utf8'");
@@ -90,7 +90,7 @@
             if($con) {
 
                 //selecciono base de datos
-                mysql_select_db("a4376548_cinefan", $con);
+                mysql_select_db("xxxxx", $con);
 
                 //si conectamos, preparamos la consulta a la tabla de usuarios, solo el usuario con campo admin=si accederá
                 $sql=mysql_query("select login,admin,password from usuarios where admin=\"si\";");
