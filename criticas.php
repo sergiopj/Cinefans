@@ -1,51 +1,43 @@
 
 <?php
-//iniciamos session
+//start session
 session_start();
 ?>
-
-
-
-
 
 <!doctype html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
-    <!--Añado la etiqueta meta-viewport imprecindible para trabajar con bootstrap-->
+    <title>Criticas</title>
+    <!--I add the label put - viewport imprecindible to work with bootstrap-->
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/estilos.css"/>
     <style>
 
         td{
-
             padding: 30px;
-
-
         }
 
         th{
             font-weight:bold ;
             padding-left: 30px;
-
         }
+        
     </style>
 </head>
 <body>
-<!--Añado la libreria jquery-->
+    
+<!--insert jquery library-->
 <script src="js/jquery.js.js"></script>
-<!--Acceso al archivo bootstrap con el js-->
+<!--I Access to the file bootstrap with the js-->
 <script src="js/bootstrap.min.js"></script>
 
-
-<!--Codigo real de esta pagina-->
 
 
 <?php
 
-//si hay session
+//If it is session
 
 if(isset($_SESSION['usuario'])){
 
@@ -56,21 +48,12 @@ if(isset($_SESSION['usuario'])){
      Bienvenido <strong style='color: #ffffff; font-size: 1.2em;'>$user</strong><br/>
      <a href='cerrar_session.php' style='color: #9afff2'>Cerrar sesión</a>
     </div>";
-
-
-
-
-
 }
 
-//si no la hay
-
+//If it is not session
 else{
-
     ?>
-
-
-    <!--capa de logeo-->
+    <!--login-->
     <div class="row">
         <div id="panel_log" class="col-md-10 col-xs-12">
             <form action="login.php" name="login">
@@ -80,7 +63,7 @@ else{
             </form>
         </div>
 
-        <!--registro-->
+        <!--new user-->
 
         <div class="col-md-2 col-xs-12" id="aun">
             <a href="registro.php" id="regis">¿Aún no te has registrado?</a>
@@ -94,19 +77,12 @@ else{
 
 ?>
 
-
-
-
-
-
-
-
-<!-- fotos -->
+<!-- photos -->
 
 <img src="img/generales/cine1.jpg"  style="position: absolute; top: 6%;left: 20%;" alt=""/>
 <img src="img/generales/cine2.jpg"  style="position: absolute; top: 6%;right: 20%;" alt=""/>
 
-<!--titulo-->
+<!--title-->
 
 <div class="row">
 
@@ -117,15 +93,12 @@ else{
 
 
 
-
-
 <div class="row">
 
 
     <nav class="navbar navbar-default container col-xs-12 col-sm-12 col-md-8 col-lg-8 span8 centering" role="navigation" style="z-index: 10">
-        <!-- El logotipo y el icono que despliega el menú se agrupan
-            para mostrarlos mejor en los dispositivos móviles -->
-        <!-- con el class centering puedo centrar en la web el menu horizontal -->
+         <!-- The logo and the icon that drop-down of the menu they group to show them better in the mobile devices -->
+        <!-- With the class centering I can centre on the web the horizontal menu -->
         <div class="navbar-header ">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only"></span>
@@ -136,7 +109,7 @@ else{
             <a class="navbar-brand" style="background-color: #000000;color:white;" href="index.php" id="men"><strong>Inicio</strong></a>
         </div>
 
-        <!-- menu de navegacion adaptado a todo tipo de pantallas -->
+        <!-- Menu of navigation adapted to all kinds of screens -->
         <div  class="collapse navbar-collapse navbar-ex1-collapse span8 centering" id="menu">
             <ul class="nav navbar-nav">
                 <li><a href="peliculas.php" class="enlaces">PELÍCULAS </a></li>
@@ -151,92 +124,52 @@ else{
 
 </div>
 
-
-
-
 <h3 class="container-fluid" id="titulo_carte"><em>Críticas</em></h3>
 
-
-
-
-
 <?php
-//conectarse como usuario de la bd
-$con=mysql_connect('mysql1.000webhost.com','a4376548_sergio','pituspitus');
+//To connect as user of the database
+$con=mysql_connect('xxxxwebhost.com','xxxx','xxxx');
 
-//codificar texto en utf8 importante si no se verian caracteres raros interpretados por el navegador
+//Text codifies in utf8 importantly if characters not interpreted by the web navigator 
 mysql_query("SET NAMES 'utf8'");
-
 
 
 if($con){
     $obra=$_GET['variable3'];
-//selecciono base de datos
+    
+//I select database
 mysql_select_db("a4376548_cinefan", $con);
-//consulta donde nos interesa sacar los estrenos
+
+//It query where we are interested in extracting the critic related to work
 $sql = mysql_query("select texto,autor,titulo,titulo_ori from criticas inner join obras where obras.id_obra=$obra and criticas.id_obra=$obra");
 
-//funcion para devolver array con datos de una fila de la tabla
+//Function to return array with information of a row of the table
 $fila = mysql_fetch_assoc($sql);
-
-
 
 ?>
 <table style='position:absolute;width: 50%;left: 24%;top: 40%;border-radius:12px;border-color: #080808;background-color: rgba(27, 109, 133, 0.16);'>
 
     <?php
-    //bucle que devuelve el valor de todas las filas que abarca la consulta sql
+    //While that returns the value of all the rows that includes the sql query
 
     while($fila){
-
         $autor=$fila['autor'];
         $critica=$fila['texto'];
         $titulo=$fila['titulo'];
         $titulo_ori=$fila['titulo_ori'];
 
-
-
         echo "<tr><th><strong style='color: red;font-size: 1.2em'>$autor</strong>&nbsp;&nbsp;&nbsp;&nbsp;<small>$titulo</small> <small>($titulo_ori)</small></th></tr>
                 <tr><td><p>$critica</p></td></tr>";
 
 
-
-
-
-
-
-
-
-        //rompo el bucle con un centinela para que recorra la tabla entera
+        //I break the curl with a sentry in order that it crosses the entire table
         $fila = mysql_fetch_assoc($sql);
     }
-
 
     }
 
     ?>
 
 </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>
