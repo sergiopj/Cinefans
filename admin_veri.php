@@ -78,7 +78,7 @@
             //To connect as user of the database
             $con=mysql_connect('xxxxxwebhost.com','xxxx','xxxx');
 
-            //Text codifies in utf8 importantly if characters not interpreted by the mariner would not appear 
+            //Text codifies in utf8 importantly if characters not interpreted by the web navigator 
             mysql_query("SET NAMES 'utf8'");
 
             //If finally it is possible to connect to the database
