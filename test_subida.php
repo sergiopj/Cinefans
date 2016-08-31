@@ -1,21 +1,17 @@
 
 <?php
-
-//inicio de sesion
-
 session_start();
-
 ?>
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/estilos.css"/>
-    <title>Title</title>
+    <title>Subir Archivo</title>
     <style>
         #gestion{
             position:absolute;
@@ -41,12 +37,10 @@ session_start();
     </style>
 </head>
 <body>
+    
+<!-- the user can upload the file to the server -->
 
 <form action="subearchivo.php" method="post" enctype="multipart/form-data">
-
-
-
-
         <div id="gestion">
             <table border="1" class="table-responsive" align="center" style="width: 90%;height: 80%;text-align: center;margin: auto">
                 <tr><th colspan="2" style="text-align: center">Subir Portada de Obra al Servidor de Cinefans</th></tr>
@@ -54,18 +48,7 @@ session_start();
                 <td colspan="2"><a href="Admin.html" class="btn btn-primary" style="background-color:#8c8c8c;">Volver a Pantalla de Login</a></td>
             </table>
         </div>
-
-
-
-
-
-
 </form>
-
-
-
-
-
 
 </body>
 </html>
