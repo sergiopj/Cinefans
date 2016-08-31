@@ -1,43 +1,34 @@
 <?php
 
-//no hace falta validar lo recogido pues lo hace el propio formulario gracias a los atributos required de html5
+//It is not necessary to validate the quiet thing since the own form does it thanks to the attributes required of html5
 
-//conectarse como usuario de la bd
-$con=mysql_connect('mysql1.000webhost.com','a4376548_sergio','pituspitus');
+//To connect as user of the database
+$con=mysql_connect('xxxwebhost.com','xxxx','xxxx');
 
-//codificar texto en utf8 importante si no se verian caracteres raros interpretados por el navegador
+//Text codifies in utf8 importantly if characters not interpreted by the mariner would not appear 
 mysql_query("SET NAMES 'utf8'");
 
-//si hay conexion
-
+//If there is connection
 if(isset($con)){
 
-    //como hay conexion insertamos los datos en la bd
-    //selecciono base de datos
-    mysql_select_db("a4376548_cinefan", $con);
-    //preparamos los parametros recogidos por $get y los guardo en variables para trabajar mejor con ellos
+    //As if there is connection we insert the information in the database
+    //I select the database
+    mysql_select_db("xxxx", $con);
+    
+    //We prepare the parameters gathered for $get and I guard them in variables to work better with them
     $nombre=$_GET['nombre'];
     $nacionalidad=$_GET['nacionalidad'];
     $fecha=$_GET['fecha'];
 
-    //consulta donde nos interesa sacar los estrenos
+    //It query where we are interested in extracting the premieres
     $sql = mysql_query("INSERT INTO directores (nombre_artistico,nacionalidad,fecha_naci) VALUES('$nombre','$nacionalidad','$fecha');");
-    echo $sql;
-    //como se ha añadido la nueeva obra en la bd...
+    
+    //The new work has been added in the database
     echo "<script languaje='javascript'>
                         alert('Director $nombre Introducido');
                         location.href = 'Admin.html';
              </script>";
 
 }
-
-
-//si no hay conexion guardamos los errores en el array $error
-
-
-
-
-
-
 
 ?>
