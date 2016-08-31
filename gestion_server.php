@@ -14,7 +14,7 @@
 <?php
 
 
-//compruebo el archivo recogido
+//I check Received file
 
 
 if ($_FILES['archivo']["error"] > 0)
@@ -28,7 +28,7 @@ else
     echo "Tamaño: " . ($_FILES["archivo"]["size"] / 1024) . " kB<br>";
     echo "Carpeta temporal: " . $_FILES['archivo']['tmp_name'];
 
-    //I move to server the file
+    //I move the file to server
 
     move_uploaded_file($_FILES['archivo']['tmp_name'],
 
