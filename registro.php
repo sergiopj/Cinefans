@@ -1,37 +1,27 @@
 
 <?php
-//iniciamos session
 session_start();
 ?>
-
-
-
-
 
 <!doctype html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
-    <!--Añado la etiqueta meta-viewport imprecindible para trabajar con bootstrap-->
+    <title>Registro Cinefans</title>
+    <!--I add the label put - viewport imprecindible to work with bootstrap-->
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/estilos.css"/>
 </head>
 <body>
-<!--Añado la libreria jquery-->
+<!--I Add the jquery library-->
 <script src="js/jquery.js.js"></script>
-<!--Acceso al archivo bootstrap con el js-->
+<!--I Access to the file bootstrap with the js-->
 <script src="js/bootstrap.min.js"></script>
-
-
-<!--Codigo real de esta pagina-->
-
 
 <?php
 
-//si hay session
-
+//If it is session
 if(isset($_SESSION['usuario'])){
 
     $user=$_SESSION['usuario'];
@@ -41,21 +31,13 @@ if(isset($_SESSION['usuario'])){
      Bienvenido <strong style='color: #ffffff; font-size: 1.2em;'>$user</strong><br/>
      <a href='cerrar_session.php' style='color: #9afff2'>Cerrar sesión</a>
     </div>";
-
-
-
-
-
 }
 
-//si no la hay
-
+////If it is not session
 else{
 
     ?>
-
-
-    <!--capa de logeo-->
+    <!--login-->
     <div class="row">
         <div id="panel_log" class="col-md-10 col-xs-12">
             <form action="login.php" name="login">
@@ -65,7 +47,7 @@ else{
             </form>
         </div>
 
-        <!--registro-->
+        <!--new user-->
 
         <div class="col-md-2 col-xs-12" id="aun">
             <a href="registro.php" id="regis">¿Aún no te has registrado?</a>
@@ -81,12 +63,12 @@ else{
 
 
 
-<!-- fotos -->
+<!-- photos -->
 
 <img src="img/generales/cine1.jpg"  style="position: absolute; top: 6%;left: 20%;" alt=""/>
 <img src="img/generales/cine2.jpg"  style="position: absolute; top: 6%;right: 20%;" alt=""/>
 
-<!--titulo-->
+<!--title-->
 
 <div class="row">
 
@@ -96,17 +78,13 @@ else{
 </div>
 
 
-<!--capa con buscador y dos fotos-->
-
-
 
 <div class="row">
 
 
     <nav class="navbar navbar-default container col-xs-12 col-sm-12 col-md-8 col-lg-8 span8 centering" role="navigation" style="z-index: 10">
-        <!-- El logotipo y el icono que despliega el menú se agrupan
-            para mostrarlos mejor en los dispositivos móviles -->
-        <!-- con el class centering puedo centrar en la web el menu horizontal -->
+        <!-- The logo and the icon that drop-down of the menu they group to show them better in the mobile devices -->
+        <!-- With the class centering I can centre on the web the horizontal menu -->
         <div class="navbar-header ">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only"></span>
@@ -117,7 +95,7 @@ else{
             <a class="navbar-brand" href="index.php" id="men"><strong>Inicio</strong></a>
         </div>
 
-        <!-- menu de navegacion adaptado a todo tipo de pantallas -->
+        <!-- Menu of navigation adapted to all kinds of screens -->
         <div class="collapse navbar-collapse navbar-ex1-collapse span8 centering" id="menu">
             <ul class="nav navbar-nav">
                 <li><a href="peliculas.php" class="enlaces">PELÍCULAS </a></li>
@@ -134,7 +112,7 @@ else{
 
 <div style="position: absolute;padding-top:6px;width:25%;height:15%;text-align:center;right:5%;border-radius:5px;box-shadow:10px 10px 10px black;color:#000000;top:67.2%;background-color: rgba(169, 169, 169, 0.44);">Dicha contraseña deberá empezar por <strong><em>una letra mayúscula</em></strong>, letras minúsculas y <strong><em>un número</em></strong>. Como mínimo 10 carácteres y Máximo 20. Ejemplo: Aaaa9aaaaaaaaaa</div>
 
-<!--FORMULARIO-->
+<!--form-->
 <form action="registro_ok.php">
 
     <table border="1" id="registro">
