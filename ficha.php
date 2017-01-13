@@ -1,42 +1,53 @@
 
 <?php
+//iniciamos session
 session_start();
 ?>
+
+
+
+
+
 <!doctype html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Ficha Individual</title>
-    <!--I add the label put - viewport imprecindible to work with bootstrap-->
+    <title>Index</title>
+    <!--Añado la etiqueta meta-viewport imprecindible para trabajar con bootstrap-->
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/estilos.css"/>
-    <style>
-    
-        video {
-            background-size: cover;
-            bottom: 0;
-            height: auto;
-            min-height: 100%;
-            min-width: 100%;
-            position: fixed;
-            right: 0;
-            width: auto;
-            z-index: 10;
+        <style>
+
+        #criticas{
+
+            position: absolute;
+
+            top: 80%;
+
+
+
         }
 
+
     </style>
+
+
 </head>
 <body>
-    
-<!--I Add the jquery library-->
+<!--Añado la libreria jquery-->
 <script src="js/jquery.js.js"></script>
-<!--I Access to the file bootstrap with the js-->
+<!--Acceso al archivo bootstrap con el js-->
 <script src="js/bootstrap.min.js"></script>
+
+
+<!--Codigo real de esta pagina-->
+
 
 <?php
 
-//If it is session
+//si hay session
+
 if(isset($_SESSION['usuario'])){
 
     $user=$_SESSION['usuario'];
@@ -47,12 +58,20 @@ if(isset($_SESSION['usuario'])){
      <a href='cerrar_session.php' style='color: #9afff2'>Cerrar sesión</a>
     </div>";
 
+
+
+
+
 }
 
-//If it is not session
+//si no la hay
+
 else{
+
     ?>
-    <!--login-->
+
+
+    <!--capa de logeo-->
     <div class="row">
         <div id="panel_log" class="col-md-10 col-xs-12">
             <form action="login.php" name="login">
@@ -62,7 +81,7 @@ else{
             </form>
         </div>
 
-        <!--new user-->
+        <!--registro-->
 
         <div class="col-md-2 col-xs-12" id="aun">
             <a href="registro.php" id="regis">¿Aún no te has registrado?</a>
@@ -77,12 +96,12 @@ else{
 ?>
 
 
-<!-- photos -->
+<!-- fotos -->
 
-<img src="img/generales/cine1.jpg"  style="position: absolute; top: 6%;left: 20%;" alt=""/>
-<img src="img/generales/cine2.jpg"  style="position: absolute; top: 6%;right: 20%;" alt=""/>
+<img src="img/generales/cine1.jpg" id="carre1"  style="position: absolute; top: 10%;left: 20%;" alt=""/>
+<img src="img/generales/cine2.jpg" id="carre2" style="position: absolute; top: 10%;right: 20%;" alt=""/>
 
-<!--title-->
+<!--titulo-->
 
 <div class="row">
     <div  id="titulo" class="col-xs-12 col-md-12" style="z-index: 9">
@@ -90,11 +109,17 @@ else{
     </div>
 </div>
 
+
+
+
+
 <div class="row">
-    
+
+
     <nav class="navbar navbar-default container col-xs-12 col-sm-12 col-md-8 col-lg-8 span8 centering" role="navigation" style="z-index: 10">
-       <!-- The logo and the icon that drop-down of the menu they group to show them better in the mobile devices -->
-       <!-- With the class centering I can centre on the web the horizontal menu -->
+        <!-- El logotipo y el icono que despliega el menú se agrupan
+            para mostrarlos mejor en los dispositivos móviles -->
+        <!-- con el class centering puedo centrar en la web el menu horizontal -->
         <div class="navbar-header ">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only"></span>
@@ -105,7 +130,7 @@ else{
             <a class="navbar-brand" href="index.php" id="men"><strong>Inicio</strong></a>
         </div>
 
-        <!-- Menu of navigation adapted to all kinds of screens -->
+        <!-- menu de navegacion adaptado a todo tipo de pantallas -->
         <div class="collapse navbar-collapse navbar-ex1-collapse span8 centering" id="menu">
             <ul class="nav navbar-nav">
                 <li><a href="peliculas.php" class="enlaces">PELÍCULAS </a></li>
@@ -120,36 +145,50 @@ else{
 
 </div>
 
+
+<a href="index.php"><img src="img/controles/boton-volver.jpg" width="9%" height="9%" style="position: absolute; top: 35%; left: 45% "  alt=""></a>
+
+
+
+
+
+
 <?php
 
-//I get variable1 from the page index
+//recogo variable de la pagina index
 $v1=$_GET['variable1'];
 
-//To connect as user of the database
-$con=mysql_connect('xxxx','xxxx','xxxx');
+//conectarse como usuario de la bd
+$con=mysql_connect('localhost','sergiopj','Ribera12actual!');
 
-//I select the database
-mysql_select_db("xxxx", $con);
+//selecciono base de datos
+mysql_select_db("cinefans", $con);
 
-//Text codifies in utf8 importantly if characters not interpreted by the web navigator 
+
+//codificar texto en utf8 importante si no se verian caracteres raros interpretados por el navegador
 mysql_query("SET NAMES 'utf8'");
 
+
+
+
 if($con) {
-    //It query where we are interested in extracting all the information of the title of movie received and directors' names
+    //consulta donde nos interesa sacar todos los datos del titulo de pelicula recibido y nombres de directores
     $sql = mysql_query("SELECT * FROM obras O INNER JOIN directores D USING(id_director)
     WHERE O.id_obra=$v1;");
 
-    //Function to return array with information of a row of the table
+
+    //funcion para devolver array con datos de una fila de la tabla
     $fila = mysql_fetch_assoc($sql);
 
     $titulo = $fila['titulo'];
     $id = $fila['id_obra'];
+    $trailer = $fila['trailer'];
 
 
     while ($fila) {
         echo "<div class='ficha_grande'><table id='ficha_prin' class='table col-xs-12 col-sm-12 col-md-6 col-lg-6' >";
         echo "<tr><th colspan='2' id='title'>" . $fila['titulo'] . "</th></tr>";
-        echo "<tr><td rowspan='9'><img style='border:2px solid #000000 ;' id='foto_grande' onclick='javascript:this.width=400;this.height=592' ondblclick='javascript:this.width=165;this.height=242' src='img/obras/" . $fila['foto'] . ".jpg' width='165' height='242' alt=''/><h4 style='position:relative; left:34%;top:10%;'>Tráiler</h4><a href='" . $fila['trailer'] . "' style='position:relative; left:15%;top:15%;' target='_blank'> <img src='img/redes_sociales/you_tube.png' alt='' style='position'  id='youtube'/></a><a href='criticas.php?variable3=$id' id='criticas'>Críticas Usuarios</a></td></tr>";
+        echo "<tr><td rowspan='9'><img style='border:2px solid #000000 ;' id='foto_grande' onclick='javascript:this.width=400;this.height=592' ondblclick='javascript:this.width=165;this.height=242' src='img/obras/grandes/" . $fila['foto'] . ".jpg' width='165' height='242' alt=''/><h4 style='position:relative; left:34%;top:10%;'>Tráiler</h4><a style='position:relative; left:15%;top:15%;' target='_blank' onclick=\"window.open('$trailer', 'popup','fullscreen=1', 'left=390, top=200, width=725, height=544, toolbar=0, resizable=1')\"> <img src='img/redes_sociales/you_tube.png' alt='' style='position'  id='youtube'/></a><a href='criticas.php?variable3=$id' id='criticas'>Críticas Usuarios</a></td></tr>";
         echo "<tr><td><strong>Título Original:&nbsp;&nbsp;&nbsp;&nbsp;</strong>" . $fila['titulo_ori'] . "</td></tr>";
         echo "<tr><td><strong>Duración:&nbsp;&nbsp;&nbsp;&nbsp;</strong>" . $fila['duracion'] . "  minutos</td></tr>";
         echo "<tr><td><strong>Año:&nbsp;&nbsp;&nbsp;&nbsp;</strong>" . $fila['año'] . "</td></tr>";
@@ -158,35 +197,33 @@ if($con) {
         echo "<tr><td><strong>Género:&nbsp;&nbsp;&nbsp;&nbsp;</strong>" . $fila['genero'] . "</td></tr>";
         echo "<tr><td><strong><p>Sinopsis:&nbsp;&nbsp;&nbsp;&nbsp;</strong>" . $fila['sinopsis'] . "</p></td></tr>";
         echo "<tr><td><strong><p>Reparto:&nbsp;&nbsp;&nbsp;&nbsp;</strong>" . $fila['reparto'] . "</p></td></tr>";
-        //i break while
+        //rompo el bucle para que recorra la tabla entera
         $fila = mysql_fetch_assoc($sql);
+        "</div>";
+
+
     }
 
 
-    //If it exists session it is possible to vote and criticize
+    //si hay session se puede votar y criticar
     if (isset($_SESSION['usuario'])) {
+
+
         $uno=1;
         $dos=2;
         $tres=3;
         $cuatro=4;
         $cinco=5;
-        
+
+
        echo "<tr><td colspan='2' style='background-color: #204d74;'>
 
-        <!--I edit the css since the table changes -->
+     
 
-        <style>
-        
-            #criticas{
-            position: absolute;
-            top: 80%;
-            }
+    
 
 
-        </style>
-
-
-        <!--links where I send the value of the vote-->
+        <!--enlaces donde mando el valor del voto-->
 
         <strong style='color: #ffffff;'>Vota $titulo</strong>&nbsp;&nbsp;&nbsp;
 
@@ -198,14 +235,61 @@ if($con) {
         <a href='criticar.php?idpeli=$id' style='padding-left: 20%;color: white'>Escribir critica de $titulo</a>
         </td></tr>";
 
+
     }
 
 }
 
 
+
+
             ?>
 
+
+
+
+
+
+
+
+
+
 </table></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>

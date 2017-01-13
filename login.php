@@ -1,75 +1,82 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
 <body>
 
-<!--I Add the jquery library-->
+<!--Añado la libreria jquery-->
 <script src="js/jquery.js.js"></script>
-<!--I Access to the file bootstrap with the js-->
+<!--Acceso al archivo bootstrap con el js-->
 <script src="js/bootstrap.min.js"></script>
 
 <?php
 
-//We verify that it comes login and password
+//comprobamos que nos llega
 if(isset($_GET['login']) && isset($_GET['pass'])) {
 
-    //If empty fields exist sending to the index.php
+    //si hay campos vacios lo mandamos al formulario
     if ($_GET['login'] == "" || $_GET['pass'] == "") {
+
+        //si es asi lo mandamos al index
+
         header('location:index.php');
+
+
     }
 
-    //if i get the correct parameters...
+    //si nos llega pass y login
     else{
 
-      
-        //To connect as user of the database
-        $con=mysql_connect('xxxx.000webhost.com','xxxx','xxxx');
+        //comprobamos que esta en la base de datos
 
-        
-        //Text codifies in utf8 importantly if characters not interpreted by the web navigator 
+        //conectarse como usuario de la bd
+        $con=mysql_connect('localhost','sergiopj','Ribera12actual!');
+
+        //codificar texto en utf8 importante si no se verian caracteres raros interpretados por el navegador
         mysql_query("SET NAMES 'utf8'");
 
-        //If finally it is possible to connect to the database
+        //si hay conexion
         if($con){
 
             $usuario=$_GET['login'];
             $contraseña=sha1($_GET['pass']);
 
-            //select the database
-            mysql_select_db("xxxx", $con);
-            
-            //It consults where we extract the user's login
+
+            //selecciono base de datos
+            mysql_select_db("cinefans", $con);
+            //consulta donde nos interesa sacar los estrenos
             $sql = mysql_query("SELECT id_user,login,password FROM usuarios WHERE login = '$usuario' and password = '$contraseña'");
-            
-            //With this function we escape special characters to avoid sql inyection
+            //con esto escapamos caracteres especiales para evitar sql inyection
             mysql_real_escape_string($usuario);
             mysql_real_escape_string($contraseña);
 
 
-            //Function to return array with information of a row of the table
+            //funcion para devolver array con datos de una fila de la tabla
             $fila = mysql_fetch_assoc($sql);
 
-            //I verify if the user is already in my database in the table users
+            //mirar si el usuario se encuentra ya en mi bd en la tabla usuarios
+
+
             $login=$_GET['login'];
-            //I code gathered from $get in order that it coincides with it of the database
+            //cifro lo recogido desde $get para que coincida con lo de la bd
             $pass=sha1($_GET['pass']);
 
-            //I code in sha to compare with what already he has coded in the database
+            //ciframos en sha para comparar con lo que ya hay cifrado en la bd
 
             if($login == $fila['login'] && $pass == $fila['password']){
 
-                //welcome message
+                //guardamos login en session
                 echo "estas dentro $login";
-                //start session
+                //Creamos sesión
                 session_start();
-                //We store the user's name and his id in a variable of session user
+                //Almacenamos el nombre de usuario y su id en una variable de sesión usuario
                 $_SESSION['usuario'] = $usuario;
                 $_SESSION['id_user'] = $fila['id_user'];
-                //send to the index.php but with the opened session
+                //Redireccionamos a la pagina pero con la session abierta
                 header("Location: index.php");
+
             }
 
             else{
@@ -79,10 +86,18 @@ if(isset($_GET['login']) && isset($_GET['pass'])) {
                     </script>";
             }
         }
-        //if the connection is failed.....
+
+
+
+
+
+        //si falla la conexion
 
         else{
-        //i make this function in the future
+
+
+
+
 
         }
 

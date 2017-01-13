@@ -1,42 +1,61 @@
 
 <?php
+//iniciamos session
 session_start();
 ?>
+
+
+
+
 
 <!doctype html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Documentales</title>
-    <!--I add the label put - viewport imprecindible to work with bootstrap-->
+    <title>Index</title>
+    <!--Añado la etiqueta meta-viewport imprecindible para trabajar con bootstrap-->
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/estilos.css"/>
 </head>
 <body>
-<!--I Add the jquery library-->
+<!--Añado la libreria jquery-->
 <script src="js/jquery.js.js"></script>
-<!--I Access to the file bootstrap with the js-->
+<!--Acceso al archivo bootstrap con el js-->
 <script src="js/bootstrap.min.js"></script>
 
+
+<!--Codigo real de esta pagina-->
 
 
 <?php
 
-//If it is session
+//si hay session
+
 if(isset($_SESSION['usuario'])){
+
     $user=$_SESSION['usuario'];
+
     echo "<div class='row'>
     <div id='panel_log' class='col-md-12 col-xs-12'>
      Bienvenido <strong style='color: #ffffff; font-size: 1.2em;'>$user</strong><br/>
      <a href='cerrar_session.php' style='color: #9afff2'>Cerrar sesión</a>
     </div>";
+
+
+
+
+
 }
 
-//If it is not session
+//si no la hay
+
 else{
+
     ?>
-    <!--login-->
+
+
+    <!--capa de logeo-->
     <div class="row">
         <div id="panel_log" class="col-md-10 col-xs-12">
             <form action="login.php" name="login">
@@ -46,7 +65,7 @@ else{
             </form>
         </div>
 
-        <!--new user-->
+        <!--registro-->
 
         <div class="col-md-2 col-xs-12" id="aun">
             <a href="registro.php" id="regis">¿Aún no te has registrado?</a>
@@ -60,12 +79,13 @@ else{
 
 ?>
 
-<!-- photos -->
 
-<img src="img/generales/cine1.jpg"  style="position: absolute; top: 6%;left: 20%;" alt=""/>
-<img src="img/generales/cine2.jpg"  style="position: absolute; top: 6%;right: 20%;" alt=""/>
+<!-- fotos -->
 
-<!--title-->
+<img src="img/generales/cine1.jpg" id="carre1"  style="position: absolute; top: 10%;left: 20%;" alt=""/>
+<img src="img/generales/cine2.jpg" id="carre2"  style="position: absolute; top: 10%;right: 20%;" alt=""/>
+
+<!--titulo-->
 
 <div class="row">
 
@@ -74,11 +94,17 @@ else{
     </div>
 </div>
 
+
+
+
+
 <div class="row">
 
+
     <nav class="navbar navbar-default container col-xs-12 col-sm-12 col-md-8 col-lg-8 span8 centering" role="navigation" style="z-index: 10">
-     <!-- The logo and the icon that drop-down of the menu they group to show them better in the mobile devices -->
-     <!-- With the class centering I can centre on the web the horizontal menu -->
+        <!-- El logotipo y el icono que despliega el menú se agrupan
+            para mostrarlos mejor en los dispositivos móviles -->
+        <!-- con el class centering puedo centrar en la web el menu horizontal -->
         <div class="navbar-header ">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                 <span class="sr-only"></span>
@@ -89,7 +115,7 @@ else{
             <a class="navbar-brand" href="index.php" id="men"><strong>Inicio</strong></a>
         </div>
 
-        <!-- Menu of navigation adapted to all kinds of screens -->
+        <!-- menu de navegacion adaptado a todo tipo de pantallas -->
         <div  class="collapse navbar-collapse navbar-ex1-collapse span8 centering" id="menu">
             <ul class="nav navbar-nav">
                 <li><a href="peliculas.php" class="enlaces">PELÍCULAS </a></li>
@@ -105,54 +131,76 @@ else{
 </div>
 
 
-<h2 class="container-fluid" id="titu_tops"><em>Documentales</em></h2>
+<h2 class="container-fluid" id="titulo_carte"><em>Documentales</em></h2>
 
 
-<!-- Table to show the movies in billboard -->
+<!-- tabla para mostar las peliculas en cartelera -->
+
+
 
 
 <?php
-//To connect as user of the database
-$con=mysql_connect('xxxxwebhost.com','xxxx','xxxx');
+//conectarse como usuario de la bd
+$con=mysql_connect('localhost','sergiopj','Ribera12actual!');
 
-//Text codifies in utf8 importantly if characters not interpreted by the web navigator 
+//codificar texto en utf8 importante si no se verian caracteres raros interpretados por el navegador
 mysql_query("SET NAMES 'utf8'");
 
 
 
 if($con){
-    
-//select the database
-mysql_select_db("xxxx", $con);
-
- //It query where we are interested in extracting the Documentaries
+//selecciono base de datos
+mysql_select_db("cinefans", $con);
+//consulta donde nos interesa sacar los estrenos
 $sql = mysql_query("select titulo,tipo,foto,id_obra from obras WHERE tipo='docu' order by titulo");
 
-//Function to return array with information of a row of the table
+//funcion para devolver array con datos de una fila de la tabla
 $fila = mysql_fetch_assoc($sql);
 
-?>
 
-<!-- div with block of elements     -->
+
+?>
 <div id="centro_pelis" class="row container-fluid col-md-10 col-sm-6 col-xs-12 centering">
 
     <?php
-    
-    //while that returns the value of all the rows that includes in the sql query
+    //bucle que devuelve el valor de todas las filas que abarca la consulta sql
+
     while($fila){
         $titulo=$fila['titulo'];
         $foto=$fila['foto'];
         $id=$fila['id_obra'];
-        
-        //i send id to url link
+        //mando valor id de obra por url con el enlace
         echo "<a href='ficha.php?variable1=$id'><div id='peli_indi'><img src='img/obras/$foto.jpg' alt='' width='165' height='242'/><div id='titulos'><strong>$titulo</strong></div></div></a>";
-        
-        //i break while
+        //rompo el bucle con un centinela para que recorra la tabla entera
         $fila = mysql_fetch_assoc($sql);
     }
 
+
     }
+
     ?>
+
+
+
+
+
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

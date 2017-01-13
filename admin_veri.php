@@ -1,22 +1,31 @@
-
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Verifiacion</title>
-    <!--I add the label put - viewport imprecindible to work with bootstrap-->
+    <title>Document</title>
+    <!--Añado la etiqueta meta-viewport imprecindible para trabajar con bootstrap-->
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/estilos.css"/>
     <style>
 
         body{
-            background-color:#212429;
+            background-color:#f8f8f8;
+        }
+
+        #cerrar{
+            position: absolute;
+            top:1%;
+            right: 30%;
+
+
         }
 
         h4{
-            color:#f9f9f9;
+
+            color:black;
             text-align: center;
+
         }
 
         #gestion{
@@ -35,9 +44,11 @@
         }
 
         select{
+
             position: relative;
             left: 38%;
             top: 20%;
+
         }
 
         th{
@@ -52,77 +63,71 @@
 
 
 <?php
-
-
-    //We verify that the user comes to us and password from the form
+    //comprobamos que nos llega el usuario y pass del formulario
 
     if(isset($_GET['usuario']) && isset($_GET['password'])) {
 
-    //We verify that empty fields from the form 
+    //comprobamos que no nos llegan campos vacios del formulario
 
 
         if($_GET['usuario']=="" || $_GET['password']==""){
 
-            //If there is algun empty field we order it to the form again and the user is warned him by code javascript
+            //si hay algun campo vacio lo mandamos al formulario de nuevo y se le avisa con codigo javascript
             echo"<script languaje='javascript'>
                     alert('Faltan Campos Por rellenar');
                     location.href = 'admin.html';
                     </script>";
 
         }
-
-        //If we receive something we have to connect to the database and verify if the received is in the users' table
-
+        
+        //si recibimos algo tenemos que conectar a la bd y comprobar si lo recibido se encuentra en la tabla de usuarios
+        
         else {
 
-            //To connect as user of the database
-            $con=mysql_connect('xxxxxwebhost.com','xxxx','xxxx');
+            //conectarse como usuario de la bd
+            $con=mysql_connect('localhost','sergiopj','Ribera12actual!');
 
-            //Text codifies in utf8 importantly if characters not interpreted by the web navigator 
+            //codificar texto en utf8 importante si no se verian caracteres raros interpretados por el navegador
             mysql_query("SET NAMES 'utf8'");
 
-            //If finally it is possible to connect to the database
+            //si finalmente se puede conectar a la bd
 
             if($con) {
 
-                //I select database
-                mysql_select_db("xxxxx", $con);
+                //selecciono base de datos
+                mysql_select_db("cinefans", $con);
 
-                //If we connect, we prepare the consultation to the users' table, only the user with field admin=yes will accede
+                //si conectamos, preparamos la consulta a la tabla de usuarios, solo el usuario con campo admin=si accederá
                 $sql=mysql_query("select login,admin,password from usuarios where admin=\"si\";");
 
 
 
-                //We prepare the variables to work mas comfortably
+                //preparamos las variables para trabajar mas comodo
                 $usuario=$_GET['usuario'];
                 $password=$_GET['password'];
-                
-                //Since in the database the field password is coded in sha1 we code gathered from the form to compare it
+                //como en la bd el campo password está cifrado en sha1 ciframos lo recogido del form para compararlo
                 $sha1=sha1($password);
 
 
-                //If the quiet user exists, one accedes to the panel of administration of cinefans
+                //si existe el usuario recogido, se accede al panel de administracion de cinefans
                 $fila=mysql_fetch_assoc($sql);
 
-                //We use while bucle to cross the table and to search the user received of the form
+                //creamos bucle para recorrer la tabla y buscar el usuario recibido del formulario
                 while($fila){
 
                     if($fila['login']==$usuario && $fila['password']==$sha1 ){
 
-                        echo "<h4>Bienvenido $usuario</h4>";
+                        echo "<h4>Bienvenido Administrador $usuario</h4>";
+                        echo "<a href='admin.html' id='cerrar' class=\"btn btn-primary\">Cerrar Sessión</a> ";
 
-                        //Let's start a session
-                        session_start();
-                        
-                        //We store the user's name and his go in a variable of session user
-                        $_SESSION['usuario'] = $usuario;
-                        $_SESSION['password'] = $fila['password'];
-
-                        //I break the while with a sentry since already I met the user
+                        //rompo el bucle con un centinela puesto que ya di con el usuario
                         $fila = mysql_fetch_assoc($sql);
 
+                        //muestro el panel de gestion de cinefans
 
-                        //I show the panel of management of cinefans
+
+?>
+
                         <br><br><br><br>
                         <form action="gestion.php">
                             <div id="gestion">
@@ -130,19 +135,26 @@
                                     <tr><th colspan="2">Gestión Cinefans</th></tr>
                                     <tr><td><select name="menu" style="position:static;" class="list-group-item">
                                                     <option value="obras">Nueva Obra</option>
-                                                    <option value="director">Nuevo Director</option>
-                                            </select><br><button class="btn btn-primary" style="position:relative;margin-left: -100%">Añadir</button></td>
-                                        <td><a href="test_subida.php"><img src="img/controles/subir.jpg" class="img" alt=""></a><br><br>Subir Portada de Obra</td></tr>
-                                        <tr><td colspan="2"><a href="Admin.html" class="">Volver a Página de Login</a></td></tr>
+                                                    <option value="cine">Nuevo Cine</option>
+                                                    <option value="premio">Nuevo Premio</option>
+                                                </select><br><button class="btn btn-primary" style="position:relative;margin-left: -100%">Añadir</button></td>
+                                        <td><a href="test_subida.html"><img src="img/controles/subir.jpg" class="img" alt=""></a><br><br>Subir Portada de Obra</td></tr>
 
                                 </table>
                             </div>
                         </form>
+
+
+
+
 <?php
+
+
+
 
                     }
 
-                    //If the user does not exist or is an administrator, I warn it and order it to the form again
+                    //si el usuario no existe o no es administrador, lo aviso y lo mando al formulario de nuevo
 
                     else{
 
@@ -151,18 +163,31 @@
                         location.href = 'admin.html';
                         </script>";
 
-                    }
 
+
+                    }
+                    
                 }
+                
+
+
 
             }
 
+            //si no se pudo conectar a la bd creamos mensaje en el array de ERRORES
+            
         }
+
+
 
 
     }
 
+
+
 ?>
+
+
 
 </body>
 </html>

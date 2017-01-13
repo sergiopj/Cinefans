@@ -1,28 +1,17 @@
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <link rel="stylesheet" href="css/bootstrap.css"/>
     <link rel="stylesheet" href="css/estilos.css"/>
-    <title>Gestion</title>
+    <title>Document</title>
     <style>
-    
         #obra{
             position: relative;
             width: 35%;
             height: 100%;
             left: 32%;
-            }
-
-        body {
-                background-color:#212429;
-        }
-
-        legend{
-                background-color: #1b6d85;
-                color:white;
-                text-align: center;
         }
 
     </style>
@@ -31,32 +20,30 @@
 
 <?php
 
-//I prepare the variable with gathered in the list of the form
+//preparo la variable con lo recogido en la lista del formulario
 $menu=$_GET['menu'];
 
 
-//If the quiet thing is obras
+//si lo recogido es user
 
     if($menu == 'obras'){
 
 ?>
 
-    <h2 style="text-align: center;color: white" class="modal-title">Formulario Alta de Nueva Obra</h2><br><br><br>
-
-        <form action="alta_obra.php" role="form" style="position:static;top: 20%;">
+        <form action="alta_obra.php" role="form" style="position:static;top: 10%;">
             <div id="obra">
-            <fieldset class="scheduler-border" style="background-color:darkgrey">
+            <fieldset class="scheduler-border">
                 <legend class="scheduler-border">Completa todos los campos de la nueva Obra</legend><br>
-                <div class="form-group"><label for="1">Título de la Obra</label><input class="form-control" style="margin-left: 0.5%" type="text" required max="50" id="1" name="titulo"></div>
-                <div class="form-group"><label for="2">Año de lanzamiento</label><input class="form-control" style="margin-left: 0.5%" type="number" required min="1900" max="2300" id="2" name="year"></div>
-                <div class="form-group"><label for="4">Título original</label><input class="form-control" style="margin-left: 0.5%" type="text" required max="50" id="4" name="original"></div>
-                <div class="form-group"><label for="6">Músico</label><input class="form-control" style="margin-left: 0.5%" type="text" required max="30" id="6" name="musico"></div>
-                <div class="form-group"><label for="7">Fotografía</label><input class="form-control" style="margin-left: 0.5%" type="text" required max="30" id="7" name="foto"></div>
-                <div class="form-group"><label for="8">Género</label><input class="form-control" style="margin-left: 0.5%" type="text" required max="30" id="8" name="genero"></div>
-                <div class="form-group"><label for="9">Duración</label><input class="form-control" style="margin-left: 0.5%" type="number" required min="10" max="500" id="9" name="duracion"></div>
-                <div class="form-group"><label for="11">Trailer (enlace youtube)</label><input class="form-control" style="margin-left: 0.5%" type="text" required max="60" id="11" name="trailer"></div>
-                <div class="form-group"><label for="13">Director</label><input class="form-control" style="margin-left: 0.5%" type="text" required max="30" id="13" name="director"></div>
-                <div class="form-group"><label for="23">Nombre Imagen</label><input class="form-control" style="margin-left: 0.5%" type="text" required max="30" id="23" name="imagen"></div>
+                <div class="form-group"><label for="1">Título de la Obra</label><input class="form-control" type="text" required max="50" id="1" name="titulo"></div>
+                <div class="form-group"><label for="2">Año de lanzamiento</label><input class="form-control" type="number" required min="1900" max="2300" id="2" name="year"></div>
+                <div class="form-group"><label for="4">Título original</label><input class="form-control" type="text" required max="50" id="4" name="original"></div>
+                <div class="form-group"><label for="6">Músico</label><input class="form-control" type="text" required max="30" id="6" name="musico"></div>
+                <div class="form-group"><label for="7">Fotografía</label><input class="form-control" type="text" required max="30" id="7" name="foto"></div>
+                <div class="form-group"><label for="8">Género</label><input class="form-control" type="text" required max="30" id="8" name="genero"></div>
+                <div class="form-group"><label for="9">Duración</label><input class="form-control" type="number" required min="10" max="500" id="9" name="duracion"></div>
+                <div class="form-group"><label for="10">Fotografía</label><input class="form-control" type="text" required max="30" id="10" name="fotografia"></div>
+                <div class="form-group"><label for="11">Trailer (enlace youtube)</label><input class="form-control" type="text" required max="60" id="11" name="trailer"></div>
+                <div class="form-group"><label for="13">Director</label><input class="form-control" type="text" required max="30" id="13" name="director"></div>
                 <div class="form-group"><label for="3">País</label><select class="list-group-item" name="pais">
                         <option value="AF">Afganistán</option>
                         <option value="AL">Albania</option>
@@ -122,8 +109,8 @@ $menu=$_GET['menu'];
                         <option value="AE">Emiratos Árabes Unidos</option>
                         <option value="ER">Eritrea</option>
                         <option value="SI">Eslovenia</option>
-                        <option value="España" selected>España</option>
-                        <option value="Estados Unidos">Estados Unidos</option>
+                        <option value="ES" selected>España</option>
+                        <option value="US">Estados Unidos</option>
                         <option value="EE">Estonia</option>
                         <option value="ET">Etiopía</option>
                         <option value="FJ">Fiji</option>
@@ -236,7 +223,7 @@ $menu=$_GET['menu'];
                         <option value="PT">Portugal</option>
                         <option value="PR">Puerto Rico</option>
                         <option value="QA">Qatar</option>
-                        <option value="Reino Unido">Reino Unido</option>
+                        <option value="UK">Reino Unido</option>
                         <option value="CF">República Centroafricana</option>
                         <option value="CZ">República Checa</option>
                         <option value="ZA">República de Sudáfrica</option>
@@ -297,14 +284,14 @@ $menu=$_GET['menu'];
                 <div class="form-group"><label for="14">Reparto</label><textarea class="form-control" name="reparto" required id="14" placeholder="Escribe el reparto" maxlength="3000" cols="30" rows="10"></textarea></div>
              <fieldset class="scheduler-border">
                     <legend class="scheduler-border">Tipo de Obra</legend>
-                    <label for="16">Estreno/Película</label>            <input type="radio" class="radio-inline" id="16" checked name="obra" value="estreno"><br>
-                    <label for="17">Película</label>           <input type="radio" class="radio-inline" id="17" name="obra" value="pelicula"><br>
-                    <label for="18">Serie</label>          <input type="radio" class="radio-inline" id="18" name="obra" value="serie"><br>
-                    <label for="19">Documental</label>          <input type="radio" class="radio-inline" id="19" name="obra" value="docu"><br>
+                    <label for="16">Estreno/Película</label><input type="radio" id="16" checked name="obra" value="estreno"><br>
+                    <label for="17">Película</label><input type="radio" id="17" name="obra" value="pelicula"><br>
+                    <label for="18">Serie</label><input type="radio" id="18" name="obra" value="serie"><br>
+                    <label for="19">Documental</label><input type="radio" id="19" name="obra" value="docu"><br>
              </fieldset>
                 <br><br>
                     <div style="position:absolute;left: 35%;bottom:3%"><button class="btn btn-primary">Enviar</button>
-                            <a href="Admin.html" class="btn btn-primary">Volver a Login</a></div>
+                            <a href="admin_veri.php" class="btn btn-primary">Volver</a></div>
 
             </fieldset>
                 <br>
@@ -312,41 +299,23 @@ $menu=$_GET['menu'];
         </form>
 
 
+
+
+
+
+
         <?php
 
 }
 
-//If the quiet thing is director
-elseif ($menu == 'director') {
 
-        ?>
+elseif ($menu == 'user') echo "formulario alta usuarios";
 
-        <h2 style="text-align: center;color: white" class="modal-title">Formulario Alta de Nuevo Director</h2><br><br><br>
-
-        <form action="alta_director.php" role="form" style="position:static;top: 10%;">
-                <div id="obra">
-                        <fieldset class="scheduler-border" style="background-color:darkgrey">
-                                <legend class="scheduler-border">Completa todos los campos de alta del nuevo Director</legend><br>
-                                <div class="form-group" ><label for="1">Nombre Artístico</label><input class="form-control" style="margin-left: 0.5%" type="text" required max="50" id="1" name="nombre"></div>
-                                <div class="form-group"><label for="2">Nacionalidad</label><input class="form-control" style="margin-left: 0.5%" type="text" required min="19" max="230" id="2" name="nacionalidad"></div>
-                                <div class="form-group"><label for="4">Fecha de Nacimiento</label><input class="form-control" style="margin-left: 0.5%" required type="date" id="4" name="fecha"></div>
-                                <br><br>
-                                <div style="position:absolute;left: 32%;bottom:16%"><button class="btn btn-primary">Enviar</button>
-                                        <a href="Admin.html" class="btn btn-primary">Volver a Login</a></div>
-
-                        </fieldset>
-                        <br>
-                </div>
-        </form>
-
-<?php
-
-}
-
-
-//i make new functions...
 
 else
+
+
+
 
 
 ?>

@@ -1,60 +1,76 @@
 <?php
 session_start()
 ?>
+
+
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Validacion de Critica</title>
+    <title>Document</title>
 </head>
 <body>
+
+
 <?php
-// The text of the critique comes to me for $get and her go of to peli for $session
-// I assure myself that it is session and from that the critique comes without being empty
+//me llega el texto de la critica por $get y la id de a peli por $session
+//me aseguro que hay session y de que llega la critica sin estar vacia
 
 if(isset($_SESSION['usuario'])&& isset($_SESSION['id_obra']) && isset($_GET['autor']) && isset($_GET['contenido']) && !$_GET['autor']=="" && !$_GET['contenido']==""){
 
-   //We connect to the database and insert the critique
+   //conectamos a la bd e insertamos la critica
 
-    //To connect as user of the database
-    $con=mysql_connect('xxxxwebhost.com','xxxx','xxxx');
+    //conectarse como usuario de la bd
+    $con=mysql_connect('localhost','sergiopj','Ribera12actual!');
 
-    //i select the database
-    mysql_select_db("xxxx", $con);
-
-    //Text codifies in utf8 importantly if characters not interpreted by the mariner would not appear 
+    //codificar texto en utf8 importante si no se verian caracteres raros interpretados por el navegador
     mysql_query("SET NAMES 'utf8'");
 
-    //i make the variables
+    //preparo las variables
      $usuario=$_SESSION['id_user'];
      $obra=$_SESSION['id_obra'];
      $critica=$_GET['contenido'];
      $autor=$_GET['autor'];
 
-    //If there is connection
+    //si hay conexion
     if($con){
 
-        //select the database
-        mysql_select_db("xxxx", $con);
-        //It query where we are interested in extracting the premieres
+        //selecciono base de datos
+        mysql_select_db("cinefans", $con);
+        //consulta donde nos interesa sacar los estrenos
         $sql = mysql_query("insert into criticas(texto,autor,fecha,id_obra,id_user) values('$critica','$autor',null,$obra,$usuario)");
+
+
+
 
 
         echo"<script languaje='javascript'>
                     alert('Ha Escrito su crítica');
                     location.href = 'index.php';
                     </script>";
+
+
+
     }
 
-    
+    //si no hay conexion
+    else{
+
+
+
+    }
 }
 
+
 else{
-    //If the text comes emptiness...
+
+    //si el texto viene vacio...
+
     echo"<script languaje='javascript'>
                     alert('¡Hay campos vacios!');
                     location.href = 'index.php';
                     </script>";
+
 }
 
 
